@@ -1,0 +1,15 @@
+services:
+  database:
+    container_name: app
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: system
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./ini-user.sql:/docker-entrypoint-initdb.d/ini-user.sql
+      - ./init-radiostations.sql:/docker-entrypoint-initdb.d/init-radiostations.sql
+    ports:
+      - "5432:5432"
